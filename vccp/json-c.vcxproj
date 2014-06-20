@@ -46,6 +46,7 @@
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
     <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSdkDir)include;$(FrameworkSDKDir)\include;.\</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSdkDir)include;$(FrameworkSDKDir)\include;.\;</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -65,8 +66,10 @@
     <PreBuildEvent>
       <Command>mkdir ..\Debug\include
 copy ..\config.h.win32 ..\Debug\include\config.h
+copy ..\config.h.win32 ..\config.h
+copy ..\json_config.h.in  ..\Debug\include\json_config.h
+copy ..\json_config.h.in  ..\json_config.h
 copy ..\json_inttypes.h ..\Debug\include\json_inttypes.h
-copy ..\json_config.h ..\Debug\include\json_config.h
 copy ..\json_object.h ..\Debug\include\json_object.h
 copy ..\json_tokener.h ..\Debug\include\json_tokener.h
 copy ..\json_util.h ..\Debug\include\json_util.h
@@ -88,8 +91,8 @@ copy ..\json_util.h ..\Debug\include\json_util.h
     <PreBuildEvent>
       <Command>mkdir ..\Release\include
 copy ..\config.h.win32 ..\Release\include\config.h
+copy ..\json_config.h.in ..\Release\include\json_config.h
 copy ..\json_inttypes.h ..\Release\include\json_inttypes.h
-copy ..\json_config.h ..\Release\include\json_config.h
 copy ..\json_object.h ..\Release\include\json_object.h
 copy ..\json_tokener.h ..\Release\include\json_tokener.h
 copy ..\json_util.h ..\Release\include\json_util.h
