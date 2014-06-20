@@ -6,7 +6,9 @@
 /aclocal.m4
 /autom4te.cache
 /config.guess
+/json_config.h
 /compile
+/config.h
 /config.log
 /config.status
 /config.sub
