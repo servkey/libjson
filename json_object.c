@@ -596,19 +596,20 @@ static int json_object_double_to_json_string(struct json_object* jso,
 {
   char buf[128], *p, *q;
   int size;
-  /* Although JSON RFC does not support
+  /* TODO: Bug Visual Studio 
+	Although JSON RFC does not support
      NaN or Infinity as numeric values
      ECMA 262 section 9.8.1 defines
      how to handle these cases as strings */
-  if(isnan(jso->o.c_double))
+  /*if(isnan(jso->o.c_double))
     size = snprintf(buf, sizeof(buf), "NaN");
   else if(isinf(jso->o.c_double))
     if(jso->o.c_double > 0)
       size = snprintf(buf, sizeof(buf), "Infinity");
     else
       size = snprintf(buf, sizeof(buf), "-Infinity");
-  else
-    size = snprintf(buf, sizeof(buf), "%.17g", jso->o.c_double);
+  else*/
+   size = snprintf(buf, sizeof(buf), "%.17g", jso->o.c_double);
 
   p = strchr(buf, ',');
   if (p) {
@@ -642,11 +643,12 @@ struct json_object* json_object_new_double(double d)
 
 struct json_object* json_object_new_double_s(double d, const char *ds)
 {
+	char *new_ds;
 	struct json_object *jso = json_object_new_double(d);
 	if (!jso)
 		return NULL;
 
-	char *new_ds = strdup(ds);
+	new_ds = strdup(ds);
 	if (!new_ds)
 	{
 		json_object_generic_delete(jso);
@@ -658,8 +660,7 @@ struct json_object* json_object_new_double_s(double d, const char *ds)
 	return jso;
 }
 
-int json_object_userdata_to_json_string(struct json_object *jso,
-	struct printbuf *pb, int level, int flags)
+int json_object_userdata_to_json_string(struct json_object *jso,	struct printbuf *pb, int level, int flags)
 {
 	int userdata_len = strlen(jso->_userdata);
 	printbuf_memappend(pb, jso->_userdata, userdata_len);

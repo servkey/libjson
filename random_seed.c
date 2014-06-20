@@ -185,11 +185,9 @@ static int get_dev_random_seed()
 
 static int get_cryptgenrandom_seed()
 {
+	HCRYPTPROV hProvider;  int r;
     DEBUG_SEED("get_cryptgenrandom_seed");
-    
-    HCRYPTPROV hProvider = 0;
-    int r;
-    
+    hProvider = 0;
     if (!CryptAcquireContextW(&hProvider, 0, 0, PROV_RSA_FULL, CRYPT_VERIFYCONTEXT | CRYPT_SILENT)) {
         fprintf(stderr, "error CryptAcquireContextW");
         exit(1);

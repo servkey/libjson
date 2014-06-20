@@ -232,6 +232,7 @@ struct json_object* json_tokener_parse_verbose(const char *str, enum json_tokene
 struct json_object* json_tokener_parse_ex(struct json_tokener *tok,
 					  const char *str, int len)
 {
+  char *infbuf;
   struct json_object *obj = NULL;
   char c = '\1';
 #ifdef HAVE_SETLOCALE
@@ -358,7 +359,7 @@ struct json_object* json_tokener_parse_ex(struct json_tokener *tok,
 
 	printbuf_memappend_fast(tok->pb, &c, 1);
 	size_inf = json_min(tok->st_pos+1, json_inf_str_len);
-	char *infbuf = tok->pb->buf;
+	infbuf = tok->pb->buf;
 	if (*infbuf == '-')
 	{
 		infbuf++;
