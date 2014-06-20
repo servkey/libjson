@@ -396,7 +396,7 @@ static uint32_t hashlittle( const void *key, size_t length, uint32_t initval)
   final(a,b,c);
   return c;
 }
-#include <windows.h>
+
 unsigned long lh_char_hash(const void *k)
 {
 	static volatile int random_seed = -1;
